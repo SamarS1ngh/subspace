@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import '../utils/app_constants.dart';
 
@@ -8,6 +9,7 @@ class AppText extends StatelessWidget {
   final TextStyle textStyle;
   final Color color;
   final TextAlign textAlign;
+  final FontWeight fontWeight;
   final TextOverflow? textOverflow;
   const AppText._internal(
     this.text, {
@@ -15,6 +17,7 @@ class AppText extends StatelessWidget {
     required this.textStyle,
     required this.color,
     this.size,
+    this.fontWeight = FontWeight.normal,
     this.textAlign = TextAlign.start,
     this.textOverflow,
   });
@@ -25,6 +28,7 @@ class AppText extends StatelessWidget {
     required BuildContext context,
     Color? color,
     double? size,
+    FontWeight? fontWeight,
     TextAlign? textAlign,
     TextOverflow? textOverflow,
   }) =>
@@ -32,6 +36,7 @@ class AppText extends StatelessWidget {
         text,
         key: key,
         size: size ?? 40,
+        fontWeight: fontWeight ?? FontWeight.normal,
         textStyle: AppTypography.main().bigTextDefault,
         color: color ?? AppColorsTheme.dark().textDefault,
         textAlign: textAlign ?? TextAlign.start,
@@ -43,6 +48,7 @@ class AppText extends StatelessWidget {
     Key? key,
     required BuildContext context,
     Color? color,
+    FontWeight? fontWeight,
     double? size,
     TextAlign? textAlign,
     TextOverflow? textOverflow,
@@ -55,6 +61,7 @@ class AppText extends StatelessWidget {
         color: color ?? AppColorsTheme.dark().textDefault,
         textAlign: textAlign ?? TextAlign.start,
         textOverflow: textOverflow,
+        fontWeight: fontWeight ?? FontWeight.normal,
       );
 
   factory AppText.defaultText(
@@ -63,6 +70,7 @@ class AppText extends StatelessWidget {
     double? size,
     required BuildContext context,
     Color? color,
+    FontWeight? fontWeight,
     TextAlign? textAlign,
     TextOverflow? textOverflow,
   }) =>
@@ -71,6 +79,7 @@ class AppText extends StatelessWidget {
         key: key,
         textStyle: AppTypography.main().defaultText,
         size: size ?? 24,
+        fontWeight: fontWeight ?? FontWeight.normal,
         color: color ?? AppColorsTheme.dark().textDefault,
         textAlign: textAlign ?? TextAlign.start,
         textOverflow: textOverflow,
@@ -82,6 +91,7 @@ class AppText extends StatelessWidget {
     double? size,
     required BuildContext context,
     Color? color,
+    FontWeight? fontWeight,
     TextAlign? textAlign,
     TextOverflow? textOverflow,
   }) =>
@@ -91,6 +101,7 @@ class AppText extends StatelessWidget {
         textStyle: AppTypography.main().defaultTextBold,
         color: color ?? AppColorsTheme.dark().textDefault,
         size: size ?? 24,
+        fontWeight: fontWeight ?? FontWeight.normal,
         textAlign: textAlign ?? TextAlign.start,
         textOverflow: textOverflow,
       );
@@ -101,12 +112,14 @@ class AppText extends StatelessWidget {
     required BuildContext context,
     Color? color,
     double? size,
+    FontWeight? fontWeight,
     TextAlign? textAlign,
     TextOverflow? textOverflow,
   }) =>
       AppText._internal(
         text,
         key: key,
+        fontWeight: fontWeight ?? FontWeight.normal,
         textStyle: AppTypography.main().subtitleDefault,
         color: color ?? AppColorsTheme.dark().textDefault,
         size: size ?? 18,
@@ -117,6 +130,7 @@ class AppText extends StatelessWidget {
   factory AppText.subtitleDefaultBold(
     String text, {
     Key? key,
+    FontWeight? fontWeight,
     required BuildContext context,
     Color? color,
     double? size,
@@ -125,6 +139,7 @@ class AppText extends StatelessWidget {
   }) =>
       AppText._internal(
         text,
+        fontWeight: fontWeight ?? FontWeight.normal,
         key: key,
         textStyle: AppTypography.main().subtitleDefaultBold,
         color: color ?? AppColorsTheme.dark().textDefault,
@@ -135,10 +150,12 @@ class AppText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
+      maxLines: 1,
+      overflow: TextOverflow.ellipsis,
       text,
       textAlign: textAlign,
-      overflow: textOverflow,
-      style: textStyle.copyWith(color: color, fontSize: size),
+      style: textStyle.copyWith(
+          color: color, fontSize: size, fontWeight: fontWeight),
     );
   }
 }

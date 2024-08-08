@@ -1,18 +1,27 @@
 import 'package:feature_based/Routes/app_router_config.dart';
 import 'package:feature_based/core/utils/app_constants.dart';
+import 'package:feature_based/feature/blog_list/bloc/bloc.dart';
+import 'package:feature_based/feature/blog_list/respository/blog_repo.dart';
+import 'package:feature_based/feature/detailed_blog/bloc/bloc.dart';
+import 'package:feature_based/feature/detailed_blog/repository/fav_blogs_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'data/local/local_storage_service.dart';
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
   await LocalStorageService.init();
-  runApp(const ProviderScope(child: MyApp()));
+  runApp(MultiBlocProvider(providers: [
+    BlocProvider<BlogListBloc>(
+        create: (context) => BlogListBloc(blogRepository: BlogRepository())),
+    BlocProvider<DetailedBlogBloc>(
+        create: (context) => DetailedBlogBloc(favBlogsRepo: FavBlogsRepo()))
+  ], child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -29,6 +38,7 @@ class MyApp extends StatelessWidget {
               actionsIconTheme: const IconThemeData(color: Colors.white),
               iconTheme: const IconThemeData(color: Colors.white),
               backgroundColor: AppColorsTheme.dark().bgColor),
+          scaffoldBackgroundColor: AppColorsTheme.dark().bgColor,
           extensions: [
             AppColorsTheme.dark(),
             AppTypography.main(),
