@@ -1,16 +1,42 @@
-# feature_based
+# SubSpace Blog
 
-A new Flutter project.
+This is a Flutter app that showcases a list of blogs and articles.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+ **Prerequisites**
+  Before you can build and run the Flutter app, make sure you have the following installed on your system:
+ - Flutter SDK (version 2.0.0 or higher)
+ - Android Studio (for Android development)
+ - Xcode (for iOS development)
+ - Git
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+ **Getting Started**
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+ 1. **Clone the Repository**
+     - Open a terminal or command prompt.
+     - Navigate to the directory where you want to clone the repository.
+     - Run the following command to clone the repository:
+       ```bash
+       git clone https://github.com/SamarS1ngh/subspace.git
+       ```
+
+       This will create a new project directory with the basic Flutter structure.
+
+ 2. **Install Dependencies**
+     - Navigate to the project directory:
+       ```bash
+       cd subspace
+       ```
+     - Install the required dependencies:
+       ```bash
+       flutter pub get
+       ```
+  3. **Run the App (Android)**
+      - Open the project in Android Studio or your preferred IDE.
+      - Connect an Android device or start an Android emulator.
+      - In the terminal, run the following command to install the app on the device/emulator:
+        ```bash
+        flutter run
+        ```
+      - Alternatively, you can run the app directly from Android Studio.
